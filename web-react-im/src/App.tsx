@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { MessageOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import { Menu, Avatar } from 'antd'
@@ -9,25 +9,33 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuItem[] = [
   { key: 'chat', label: '聊天', icon: <MessageOutlined /> },
-  { key: 'contacts ', label: '联系人', icon: <UserOutlined /> },
+  { key: 'contacts', label: '联系人', icon: <UserOutlined /> },
 ]
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(true)
   const navigate = useNavigate()
+  const { pathname } = useLocation()
+  const firstRoute = pathname.split('/')[1]
   useEffect(() => {
-    navigate('/chat')
+    if(pathname === '/') {
+      navigate('/chat')
+    }
   }, [])
+  function menuItemClickHandler(key: string) {
+    navigate(key)
+  }
   return (
     <div className={style.App}>
       <section className={`${style['menu-section']} ${collapsed && style['menu-collapsed']}`}>
         <div className={style['menu-section-top']}>
           <Avatar shape="square" className={style.avatar} src="https://joeschmoe.io/api/v1/random" />
           <Menu
-            defaultSelectedKeys={['chat']}
+            defaultSelectedKeys={[firstRoute]}
             mode="inline"
             inlineCollapsed={collapsed}
             items={items}
+            onClick={({key}) => menuItemClickHandler(key)}
           />
         </div>
         <div className={style['menu-section-bottom']}>
