@@ -16,3 +16,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 index.module.scss.d.ts
+
+pnpm-lock.yaml
+package-lock.json

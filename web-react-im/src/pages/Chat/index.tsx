@@ -1,9 +1,10 @@
+import Session from './Session'
 import style from './index.module.less'
 
 const Chat = () => {
   return (
     <div className={style.chat}>
-      chat
+      <Session />
     </div>
   )
 }

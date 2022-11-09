@@ -1,0 +1,37 @@
+.session-card {
+  height: 70px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+  &-main {
+    flex: 1;
+    padding: 0 12px;
+    .message {
+      color: #00000073;
+      font-size: 12px;
+    }
+  }
+  &-right {
+    height: 100%;
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    .time {
+      width: 28px;
+      color: #00000073;
+      font-size: 20px;
+      transform: scale(0.5);
+      transform-origin: 0 0;
+    }
+  }
+}
+
+.session-card-active {
+  background-color: #f5f5f5;
+}
